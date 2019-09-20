@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>net.bitnine</groupId>
+	<artifactId>agensspark</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>agensspark</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<scala.base>2.11</scala.base>
+		<scala.version>${scala.base}.12</scala.version>
+		<spark.version>2.4.3</spark.version>
+		<es-hadoop.version>7.3.2</es-hadoop.version>
+		<slf4j.version>1.7.28</slf4j.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>spark-packages</id>
+			<url>https://dl.bintray.com/spark-packages/maven/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<!-- Jetty, spring-web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+<!--				<exclusion>-->
+<!--					<groupId>ch.qos.logback</groupId>-->
+<!--					<artifactId>logback-classic</artifactId>-->
+<!--				</exclusion>-->
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch-hadoop</artifactId>
+			<version>${es-hadoop.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.11 -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${scala.base}</artifactId>
+			<version>${spark.version}</version>
+<!--			<exclusions>-->
+<!--				<exclusion>-->
+<!--					<groupId>org.slf4j</groupId>-->
+<!--					<artifactId>slf4j-log4j12</artifactId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<groupId>log4j</groupId>-->
+<!--					<artifactId>log4j</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql_2.11 -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_${scala.base}</artifactId>
+			<version>${spark.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-graphx_${scala.base}</artifactId>
+			<version>${spark.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>graphframes</groupId>
+			<artifactId>graphframes</artifactId>
+			<version>0.7.0-spark2.4-s_${scala.base}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
