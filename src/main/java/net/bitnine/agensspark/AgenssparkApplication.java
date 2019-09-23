@@ -26,6 +26,8 @@ public class AgenssparkApplication implements ApplicationRunner {
 	private String port = "15619";
 	private String sparkHome = "/Users/bgmin/Servers/spark";
 	private String resource = "elasticvertex";
+	private String extraCP = "/Users/bgmin/Servers/es-hadoop/dist/elasticsearch-hadoop-7.3.1.jar"
+				+ ",/Users/bgmin/Servers/es-hadoop/dist/elasticsearch-spark-20_2.11-7.3.1.jar";
 
 	public static void main(String[] args) {
 		SpringApplication.run(AgenssparkApplication.class, args);
@@ -45,6 +47,7 @@ public class AgenssparkApplication implements ApplicationRunner {
                 .set("spark.executor.memory", "2g")
 				.set("spark.driver.memory", "2g")
 				.set("spark.eventLog.enabled","false")
+				.set("spark.driver.extraClassPath", extraCP)
 				// es 접속정보
 				.set("es.nodes.wan.only", "true")
 				.set("es.nodes", nodes)
