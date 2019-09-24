@@ -107,5 +107,11 @@ public class AgenssparkApplication implements ApplicationRunner {
 		// for DEBUG
 		System.out.println("\n\n==================================\n");
 		System.out.println("\n**count = "+esRDD.count());
+
+		Map<String, Map<String, Object>> rddMap = esRDD.collectAsMap();
+		String mapAsString = rddMap.keySet().stream()
+				.map(key -> key + "=[ " + rddMap.get(key).toString() +" ]")
+				.collect(Collectors.joining(", ", "{", "}"));
+		System.out.println("\n  ==> "+mapAsString);
 	}
 }
