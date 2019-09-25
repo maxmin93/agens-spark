@@ -54,11 +54,19 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
 
+		<!--
+		** NOTE: es-hadoop issue <BUG>
+		Spring boot executable jar NoClassDefFoundError:
+			Could not initialize class org.elasticsearch.hadoop.util.Version
+		https://github.com/elastic/elasticsearch-hadoop/issues/1358
+		-->
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch-hadoop</artifactId>
 			<version>${es-hadoop.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.11 -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
@@ -128,6 +136,23 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.elasticsearch</groupId>
+							<artifactId>elasticsearch-hadoop</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				-->
 			</plugin>
 		</plugins>
 	</build>
