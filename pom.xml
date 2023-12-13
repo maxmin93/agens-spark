@@ -22,7 +22,7 @@
 		<scala.base>2.11</scala.base>
 		<scala.version>${scala.base}.12</scala.version>
 		<spark.version>2.4.3</spark.version>
-		<es-hadoop.version>7.3.1</es-hadoop.version>
+		<es-hadoop.version>7.17.11</es-hadoop.version>
 		<slf4j.version>1.7.28</slf4j.version>
 	</properties>
 
